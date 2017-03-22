@@ -9,14 +9,17 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText nET, thetazET, deltaET, phiET, gET, ggET, gdirET, gdifET,
+    public EditText nET, thetazET, deltaET, phiET, gET, ggET, gdirET, gdifET,
             hiET, betaET, gammasET, gammaET, omegaET, thetaET;
-    TextView nOutputTV, thetazOutputTV, deltaOutputTV, phiOutputTV,
+    public TextView nOutputTV, thetazOutputTV, deltaOutputTV, phiOutputTV,
             gOutputTV, ggOutputTV, gdirOutputTV, gdifOutputTV,
             hiOutputTV, betaOutputTV, gammasOutputTV, gammaOutputTV,
             omegaOutputTV, thetaOutputTV;
-    Button calcBtn;
-    public String mNInput,mThetazInput,mDeltaInput;
+    public Button calcBtn;
+    public String nETValueInput, thetazETValueInput, deltaETValueInput,
+            phiETValueInput, gETValueInput, ggETValueInput, gdirETValueInput,
+            gdifETValueInput, hiETValueInput, betaETValueInput,
+            gammasETValueInput, gammaETValueInput, omegaETValueInput, thetaETValueInput;
     public Boolean nETValue, thetazETValue, deltaETValue, phiETValue,
             gETValue, ggETValue, gdirETValue, gdifETValue, hiETValue,
             betaETValue, gammasETValue, gammaETValue, omegaETValue, thetaETValue;
@@ -70,18 +73,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //Check for the edited fields
-                mNInput = nET.getText().toString().trim();
-                if (!mNInput.isEmpty() && mNInput.length()!=0) {
-                    nETValue = true;
-                }else{
-                    nETValue = false;
-                }
-
-
-
-
-
-
+                check_edited_fields();
 
 
                 //Execute the output printing functions
@@ -91,9 +83,113 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    void check_edited_fields(){
+
+        nETValueInput = nET.getText().toString().trim();
+        if (!nETValueInput.isEmpty() && nETValueInput.length()!=0) {
+            nETValue = true;
+        }else{
+            nETValue = false;
+        }
+
+        thetazETValueInput = nET.getText().toString().trim();
+        if (!thetazETValueInput.isEmpty() && thetazETValueInput.length()!=0) {
+            thetazETValue = true;
+        }else{
+            thetazETValue = false;
+        }
+
+        deltaETValueInput = nET.getText().toString().trim();
+        if (!deltaETValueInput.isEmpty() && deltaETValueInput.length()!=0) {
+            deltaETValue = true;
+        }else{
+            deltaETValue = false;
+        }
+
+        phiETValueInput = nET.getText().toString().trim();
+        if (!phiETValueInput.isEmpty() && phiETValueInput.length()!=0) {
+            phiETValue = true;
+        }else{
+            phiETValue = false;
+        }
+
+        gETValueInput = nET.getText().toString().trim();
+        if (!gETValueInput.isEmpty() && gETValueInput.length()!=0) {
+            gETValue = true;
+        }else{
+            gETValue = false;
+        }
+
+        ggETValueInput = nET.getText().toString().trim();
+        if (!ggETValueInput.isEmpty() && ggETValueInput.length()!=0) {
+            ggETValue = true;
+        }else{
+            ggETValue = false;
+        }
+
+        gdirETValueInput = nET.getText().toString().trim();
+        if (!gdirETValueInput.isEmpty() && gdirETValueInput.length()!=0) {
+            gdirETValue = true;
+        }else{
+            gdirETValue = false;
+        }
+
+        hiETValueInput = nET.getText().toString().trim();
+        if (!hiETValueInput.isEmpty() && hiETValueInput.length()!=0) {
+            hiETValue = true;
+        }else{
+            hiETValue = false;
+        }
+
+        betaETValueInput = nET.getText().toString().trim();
+        if (!betaETValueInput.isEmpty() && betaETValueInput.length()!=0) {
+            betaETValue = true;
+        }else{
+            betaETValue = false;
+        }
+
+        gammasETValueInput = nET.getText().toString().trim();
+        if (!gammasETValueInput.isEmpty() && gammasETValueInput.length()!=0) {
+            gammasETValue = true;
+        }else{
+            gammasETValue = false;
+        }
+
+        gammaETValueInput = nET.getText().toString().trim();
+        if (!gammaETValueInput.isEmpty() && gammaETValueInput.length()!=0) {
+            gammaETValue = true;
+        }else{
+            gammaETValue = false;
+        }
+
+        omegaETValueInput = nET.getText().toString().trim();
+        if (!omegaETValueInput.isEmpty() && omegaETValueInput.length()!=0) {
+            omegaETValue = true;
+        }else{
+            omegaETValue = false;
+        }
+
+        thetaETValueInput = nET.getText().toString().trim();
+        if (!thetaETValueInput.isEmpty() && thetaETValueInput.length()!=0) {
+            thetaETValue = true;
+        }else{
+            thetaETValue = false;
+        }
+
+        gdifETValueInput = nET.getText().toString().trim();
+        if (!gdifETValueInput.isEmpty() && gdifETValueInput.length()!=0) {
+            gdifETValue = true;
+        }else{
+            gdifETValue = false;
+        }
+
+    }
+
+
+
     void delta() {
         if (nETValue){
-            double n = Integer.parseInt(mNInput);
+            double n = Integer.parseInt(nETValueInput);
             double delta = 23.45*Math.sin(360*((284+n)/365));
             nOutputTV.setText("delta:" + delta);
         } else{
