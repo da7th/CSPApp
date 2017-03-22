@@ -95,7 +95,20 @@ public class MainActivity extends AppCompatActivity {
                     omega();
                     theta();
                 }
-
+                nETValue = false;
+                thetazETValue = false;
+                deltaETValue = false;
+                phiETValue = false;
+                gETValue = false;
+                ggETValue = false;
+                gdirETValue = false;
+                gdifETValue = false;
+                hiETValue = false;
+                betaETValue = false;
+                gammasETValue = false;
+                gammaETValue = false;
+                omegaETValue = false;
+                thetaETValue = false;
             }
         });
 
@@ -208,140 +221,194 @@ public class MainActivity extends AppCompatActivity {
     void delta() {
         if (deltaETValue) {
             double delta = Double.parseDouble(deltaET.getText().toString());
-            deltaOutputTV.setText("delta:" + delta);
+            deltaOutputTV.setText("delta:       " + delta);
         }else if (nETValue){
-            double n = Integer.parseInt(nETValueInput);
+            int n = (int)Double.parseDouble(nET.getText().toString());
             double delta = 23.45*Math.sin(360*((284+n)/365));
             deltaETValue = true;
-            deltaOutputTV.setText("delta:" + delta);
+            deltaOutputTV.setText("delta:       " + delta);
             deltaET.setText(String.valueOf(delta));
         }else{
-            deltaOutputTV.setText("delta:" + " - ");
+            deltaOutputTV.setText("delta:       " + " - ");
         }
     }
 
     void n(){
         if (nETValue){
-            int n = Integer.parseInt(nETValueInput);
-            nOutputTV.setText("n:" + n);
+            int n = (int)Double.parseDouble(nET.getText().toString());
+            nOutputTV.setText("n:       " + n);
         }else if(deltaETValue){
-            double delta = Integer.parseInt(deltaETValueInput);
+            double delta = Double.parseDouble(deltaET.getText().toString());
             int n = (int)((((Math.asin(delta/23.45))/360)*365)-284);
-            if (n < 0){
-                n = 360 + n;
-            }
             nETValue = true;
-            nOutputTV.setText("n:" + n);
+            n = 365 + n;
+            nOutputTV.setText("n:       " + n);
+            nET.setText(String.valueOf(n));
         }else{
-            nOutputTV.setText("n:" + " - ");
+            nOutputTV.setText("n:       " + " - ");
         }
     }
 
     void thetaz() {
         if (thetazETValue) {
-            double thetaz = Integer.parseInt(thetazETValueInput);
-            thetazOutputTV.setText("theta Z:" + thetaz);
+            double thetaz = Double.parseDouble(thetazET.getText().toString());
+            thetazOutputTV.setText("theta Z:       " + thetaz);
         }else{
-            thetazOutputTV.setText("theta Z:" + " - ");
+            thetazOutputTV.setText("theta Z:       " + " - ");
         }
     }
 
     void phi() {
         if (phiETValue) {
-            double phi = Integer.parseInt(phiETValueInput);
-            phiOutputTV.setText("phi:" + phi);
+            double phi = Double.parseDouble(phiET.getText().toString());
+            phiOutputTV.setText("phi:       " + phi);
         }else{
-            phiOutputTV.setText("phi:" + " - ");
+            phiOutputTV.setText("phi:       " + " - ");
         }
     }
 
     void G() {
         if (gETValue) {
-            double G = Integer.parseInt(gETValueInput);
-            gOutputTV.setText("G:" + G);
+            double G = Double.parseDouble(gET.getText().toString());
+            gOutputTV.setText("G:       " + G);
         }else{
-            gOutputTV.setText("G:" + " - ");
+            gOutputTV.setText("G:       " + " - ");
         }
     }
 
     void Gg() {
         if (ggETValue) {
-            double Gg = Integer.parseInt(ggETValueInput);
-            ggOutputTV.setText("Gg:" + Gg);
+            double gg = Double.parseDouble(ggET.getText().toString());
+            ggOutputTV.setText("Gg:       " + gg);
+        }else if(gdirETValue && gdifETValue){
+            double gdir = Double.parseDouble(gdirET.getText().toString());
+            double gdif = Double.parseDouble(gdifET.getText().toString());
+            double gg = gdif + gdir;
+            ggETValue = true;
+            ggOutputTV.setText("Gg:       " + gg);
+            ggET.setText(String.valueOf(gg));
         }else{
-            ggOutputTV.setText("Gg:" + " - ");
+            ggOutputTV.setText("Gg:       " + " - ");
         }
     }
 
     void Gdir() {
         if (gdirETValue) {
-            double Gdir = Integer.parseInt(gdirETValueInput);
-            gdirOutputTV.setText("Gdir:" + Gdir);
+            double Gdir = Double.parseDouble(gdirET.getText().toString());
+            gdirOutputTV.setText("Gdir:       " + Gdir);
+        }else if(ggETValue && gdifETValue){
+            double gg = Double.parseDouble(ggET.getText().toString());
+            double gdif = Double.parseDouble(gdifET.getText().toString());
+            double gdir = gg - gdif;
+            gdirETValue = true;
+            gdirOutputTV.setText("Gdir:       " + gdir);
+            gdirET.setText(String.valueOf(gdir));
         }else{
-            gdirOutputTV.setText("Gdir:" + " - ");
+            gdirOutputTV.setText("Gdir:       " + " - ");
         }
     }
 
     void Gdif() {
         if (gdifETValue) {
-            double Gdif = Integer.parseInt(gdifETValueInput);
-            gdifOutputTV.setText("Gdif:" + Gdif);
+            double Gdif = Double.parseDouble(gdifET.getText().toString());
+            gdifOutputTV.setText("Gdif:       " + Gdif);
+        }else if(ggETValue && gdirETValue){
+            double gg = Double.parseDouble(ggET.getText().toString());
+            double gdir = Double.parseDouble(gdirET.getText().toString());
+            double gdif = gg - gdir;
+            gdifETValue = true;
+            gdifOutputTV.setText("Gdif:       " + gdif);
+            gdifET.setText(String.valueOf(gdif));
         }else{
-            gdifOutputTV.setText("Gdif:" + " - ");
+            gdifOutputTV.setText("Gdif:       " + " - ");
         }
     }
 
     void H_I() {
         if (hiETValue) {
-            double H_I = Integer.parseInt(hiETValueInput);
-            hiOutputTV.setText("H_I:" + H_I);
+            double H_I = Double.parseDouble(hiET.getText().toString());
+            hiOutputTV.setText("H_I:       " + H_I);
         }else{
-            hiOutputTV.setText("H_I:" + " - ");
+            hiOutputTV.setText("H_I:       " + " - ");
         }
     }
 
     void beta() {
         if (betaETValue) {
-            double beta = Integer.parseInt(betaETValueInput);
-            betaOutputTV.setText("beta:" + beta);
+            double beta = Double.parseDouble(betaET.getText().toString());
+            betaOutputTV.setText("beta:       " + beta);
         }else{
-            betaOutputTV.setText("beta:" + " - ");
+            betaOutputTV.setText("beta:       " + " - ");
         }
     }
 
     void gammaS() {
         if (gammasETValue) {
-            double gammaS = Integer.parseInt(gammasETValueInput);
-            gammasOutputTV.setText("gammaS:" + gammaS);
+            double gammaS = Double.parseDouble(gammasET.getText().toString());
+            gammasOutputTV.setText("gammaS:       " + gammaS);
+        }else if(omegaETValue){
+            double omega = Double.parseDouble(omegaET.getText().toString());
+            double gammaS = Math.sin(omega);
+            gammasETValue = true;
+            gammasOutputTV.setText("gammaS:       " + gammaS);
+            gammasET.setText(String.valueOf(gammaS));
+        }else if(thetazETValue && phiETValue && deltaETValue){
+            double thetaZ = Double.parseDouble(thetazET.getText().toString());
+            double phi = Double.parseDouble(phiET.getText().toString());
+            double delta = Double.parseDouble(deltaET.getText().toString());
+            double gammaS = Math.acos((Math.cos(thetaZ)*Math.sin(phi)-Math.sin(delta))/(Math.sin(thetaZ)*Math.cos(phi)));
+            gammasETValue = true;
+            gammasOutputTV.setText("gammaS:       " + gammaS);
+            gammasET.setText(String.valueOf(gammaS));
         }else{
-            gammasOutputTV.setText("gammaS:" + " - ");
+            gammasOutputTV.setText("gammaS:       " + " - ");
         }
     }
 
     void gamma() {
         if (gammaETValue) {
-            double gamma = Integer.parseInt(gammaETValueInput);
-            gammaOutputTV.setText("gamma:" + gamma);
+            double gamma = Double.parseDouble(gammaET.getText().toString());
+            gammaOutputTV.setText("gamma:       " + gamma);
         }else{
-            gammaOutputTV.setText("gamma:" + " - ");
+            gammaOutputTV.setText("gamma:       " + " - ");
         }
     }
 
     void omega() {
         if (omegaETValue) {
-            double omega = Integer.parseInt(omegaETValueInput);
-            omegaOutputTV.setText("omega:" + omega);
+            double omega = Double.parseDouble(omegaET.getText().toString());
+            omegaOutputTV.setText("omega:       " + omega);
+        }else if(gammasETValue){
+            double gammas = Double.parseDouble(gammasET.getText().toString());
+            double omega = Math.asin(gammas);
+            omegaETValue = true;
+            omegaOutputTV.setText("omega:       " + omega);
+            omegaET.setText(String.valueOf(omega));
         }else{
-            omegaOutputTV.setText("omega:" + " - ");
+            omegaOutputTV.setText("omega:       " + " - ");
         }
     }
 
     void theta() {
         if (thetaETValue) {
-            double theta = Integer.parseInt(thetaETValueInput);
-            thetaOutputTV.setText("theta:" + theta);
+            double theta = Double.parseDouble(thetaET.getText().toString());
+            thetaOutputTV.setText("theta:       " + theta);
+        }else if(deltaETValue && phiETValue && betaETValue && gammaETValue && omegaETValue){
+            double delta = Double.parseDouble(deltaET.getText().toString());
+            double phi = Double.parseDouble(phiET.getText().toString());
+            double beta = Double.parseDouble(betaET.getText().toString());
+            double gamma = Double.parseDouble(gammaET.getText().toString());
+            double omega = Double.parseDouble(omegaET.getText().toString());
+            double theta = (Math.sin(delta)*Math.sin(phi)*Math.cos(beta)
+                                        -Math.sin(delta)*Math.cos(phi)*Math.sin(beta)*Math.cos(gamma)
+                                        +Math.cos(delta)*Math.cos(phi)*Math.cos(beta)*Math.cos(omega)
+                                        +Math.cos(delta)*Math.sin(phi)*Math.sin(beta)*Math.cos(omega)*Math.cos(gamma)
+                                        +Math.cos(delta)*Math.sin(beta)*Math.sin(omega)*Math.sin(gamma));
+            thetaETValue = true;
+            thetaOutputTV.setText("theta:       " + theta);
+            thetaET.setText(String.valueOf(theta));
         }else{
-            thetaOutputTV.setText("theta:" + " - ");
+            thetaOutputTV.setText("theta:       " + " - ");
         }
     }
 
