@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
             int n2 = Math.abs(n);
             nETValue = true;
             nOutputTV.setText(("n:       " + n2 + " / " + n1 ));
-            nET.setText(String.valueOf(n1)+" / "+String.valueOf(n2));
+            nET.setText(String.valueOf(n1)+"."+String.valueOf(n2));
         }else{
             nOutputTV.setText("n:       " + " - ");
         }
