@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context="com.example.android.cspapp.MainActivity">
 
     <LinearLayout
@@ -24,7 +25,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Day in Annum (n)" />
             <EditText
                 android:id="@+id/n_input"
@@ -43,7 +44,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Declination (delta)" />
             <EditText
                 android:id="@+id/delta_input"
@@ -62,7 +63,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Zenith Angle (thetaz)" />
             <EditText
                 android:id="@+id/thetaz_input"
@@ -81,7 +82,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Latitude (phi)" />
             <EditText
                 android:id="@+id/phi_input"
@@ -100,7 +101,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Irradiance (G)" />
             <EditText
                 android:id="@+id/G_input"
@@ -119,7 +120,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Global Irradiance (Gg)" />
             <EditText
                 android:id="@+id/Gg_input"
@@ -138,7 +139,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Direct Irradiance (Gdir)" />
             <EditText
                 android:id="@+id/Gdir_input"
@@ -157,7 +158,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Diffuse Irradiance (Gdif)" />
             <EditText
                 android:id="@+id/Gdif_input"
@@ -176,7 +177,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Irradiation(hr/day) (H-I)" />
             <EditText
                 android:id="@+id/H_I_input"
@@ -195,7 +196,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Slope/Tilt (beta)" />
             <EditText
                 android:id="@+id/beta_input"
@@ -214,7 +215,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Solar Azimuth (gammaS)" />
             <EditText
                 android:id="@+id/gammaS_input"
@@ -233,7 +234,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Surface Azimuth (gamma)" />
             <EditText
                 android:id="@+id/gamma_input"
@@ -252,7 +253,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Hour Angle (omega)" />
             <EditText
                 android:id="@+id/omega_input"
@@ -271,7 +272,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Incidence Angle (theta)" />
             <EditText
                 android:id="@+id/theta_input"
@@ -294,7 +295,12 @@
             android:background="@color/colorAccent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
+        <Button
+            android:id="@+id/clear_button"
+            android:text="Clear!"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
 
@@ -313,72 +319,72 @@
             android:id="@+id/nOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/deltaOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/thetazOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/phiOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/GOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/GgOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/GdirOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/GdifOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/H_IOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/betaOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/gammasOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/gammaOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/omegaOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/thetaOutputTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 </ScrollView>

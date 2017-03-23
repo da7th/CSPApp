@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
             gOutputTV, ggOutputTV, gdirOutputTV, gdifOutputTV,
             hiOutputTV, betaOutputTV, gammasOutputTV, gammaOutputTV,
             omegaOutputTV, thetaOutputTV;
-    public Button calcBtn;
+    public Button calcBtn, clearBtn;
     public String nETValueInput, thetazETValueInput, deltaETValueInput,
             phiETValueInput, gETValueInput, ggETValueInput, gdirETValueInput,
             gdifETValueInput, hiETValueInput, betaETValueInput,
@@ -66,8 +66,10 @@ public class MainActivity extends AppCompatActivity {
         omegaET = (EditText) findViewById(R.id.omega_input);
         thetaET = (EditText) findViewById(R.id.theta_input);
 
+
         //calculate Button
         calcBtn = (Button) findViewById(R.id.calc_button);
+        clearBtn = (Button) findViewById(R.id.clear_button);
 
         //Button ClickListener
         calcBtn.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +114,52 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clear_edit_fields();
+            }
+        });
+
     }
+
+
+    void clear_edit_fields(){
+        nET.setText("");
+        thetazET.setText("");
+        deltaET.setText("");
+        phiET.setText("");
+        gET.setText("");
+        ggET.setText("");
+        gdirET.setText("");
+        gdifET.setText("");
+        hiET.setText("");
+        betaET.setText("");
+        gammasET.setText("");
+        gammaET.setText("");
+        omegaET.setText("");
+        thetaET.setText("");
+
+        nOutputTV.setText("");
+        thetazOutputTV.setText("");
+        deltaOutputTV.setText("");
+        phiOutputTV.setText("");
+        gOutputTV.setText("");
+        ggOutputTV.setText("");
+        gdirOutputTV.setText("");
+        gdifOutputTV.setText("");
+        hiOutputTV.setText("");
+        betaOutputTV.setText("");
+        gammasOutputTV.setText("");
+        gammaOutputTV.setText("");
+        omegaOutputTV.setText("");
+        thetaOutputTV.setText("");
+    }
+
+
+
+
+
 
     void check_edited_fields(){
 
@@ -218,34 +265,35 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    void n(){
+        if (nETValue){
+            double n = Double.parseDouble(nET.getText().toString());
+            nOutputTV.setText("n:       " + n);
+        }else if(deltaETValue){
+            double delta = Double.parseDouble(deltaET.getText().toString());
+            int n = (int)(((((deg(Math.asin((delta/23.45))))/360)*365)-284));
+            int n1 = 365-Math.abs(n);
+            int n2 = Math.abs(n);
+            nETValue = true;
+            nOutputTV.setText(("n:       " + n2 + " / " + n1 ));
+            nET.setText(String.valueOf(n1)+" / "+String.valueOf(n2));
+        }else{
+            nOutputTV.setText("n:       " + " - ");
+        }
+    }
+
     void delta() {
         if (deltaETValue) {
             double delta = Double.parseDouble(deltaET.getText().toString());
             deltaOutputTV.setText("delta:       " + delta);
         }else if (nETValue){
-            int n = (int)Double.parseDouble(nET.getText().toString());
-            double delta = 23.45*Math.sin(360*((284+n)/365));
+            double n = Double.parseDouble(nET.getText().toString());
+            double delta = 23.45*(Math.sin((360*(284+n)/365)));
             deltaETValue = true;
             deltaOutputTV.setText("delta:       " + delta);
             deltaET.setText(String.valueOf(delta));
         }else{
             deltaOutputTV.setText("delta:       " + " - ");
-        }
-    }
-
-    void n(){
-        if (nETValue){
-            int n = (int)Double.parseDouble(nET.getText().toString());
-            nOutputTV.setText("n:       " + n);
-        }else if(deltaETValue){
-            double delta = Double.parseDouble(deltaET.getText().toString());
-            int n = (int)((((Math.asin(delta/23.45))/360)*365)-284);
-            nETValue = true;
-            n = 365 + n;
-            nOutputTV.setText("n:       " + n);
-            nET.setText(String.valueOf(n));
-        }else{
-            nOutputTV.setText("n:       " + " - ");
         }
     }
 
@@ -348,7 +396,7 @@ public class MainActivity extends AppCompatActivity {
             gammasOutputTV.setText("gammaS:       " + gammaS);
         }else if(omegaETValue){
             double omega = Double.parseDouble(omegaET.getText().toString());
-            double gammaS = Math.sin(omega);
+            double gammaS = deg(Math.sin(rad(omega)));
             gammasETValue = true;
             gammasOutputTV.setText("gammaS:       " + gammaS);
             gammasET.setText(String.valueOf(gammaS));
@@ -356,7 +404,7 @@ public class MainActivity extends AppCompatActivity {
             double thetaZ = Double.parseDouble(thetazET.getText().toString());
             double phi = Double.parseDouble(phiET.getText().toString());
             double delta = Double.parseDouble(deltaET.getText().toString());
-            double gammaS = Math.acos((Math.cos(thetaZ)*Math.sin(phi)-Math.sin(delta))/(Math.sin(thetaZ)*Math.cos(phi)));
+            double gammaS = deg(Math.acos((Math.cos(rad(thetaZ))*Math.sin(rad(phi))-Math.sin(rad(delta)))/(Math.sin(rad(thetaZ))*Math.cos(rad(phi)))));
             gammasETValue = true;
             gammasOutputTV.setText("gammaS:       " + gammaS);
             gammasET.setText(String.valueOf(gammaS));
@@ -380,7 +428,7 @@ public class MainActivity extends AppCompatActivity {
             omegaOutputTV.setText("omega:       " + omega);
         }else if(gammasETValue){
             double gammas = Double.parseDouble(gammasET.getText().toString());
-            double omega = Math.asin(gammas);
+            double omega = deg(Math.asin(rad(gammas)));
             omegaETValue = true;
             omegaOutputTV.setText("omega:       " + omega);
             omegaET.setText(String.valueOf(omega));
@@ -399,17 +447,25 @@ public class MainActivity extends AppCompatActivity {
             double beta = Double.parseDouble(betaET.getText().toString());
             double gamma = Double.parseDouble(gammaET.getText().toString());
             double omega = Double.parseDouble(omegaET.getText().toString());
-            double theta = (Math.sin(delta)*Math.sin(phi)*Math.cos(beta)
-                                        -Math.sin(delta)*Math.cos(phi)*Math.sin(beta)*Math.cos(gamma)
-                                        +Math.cos(delta)*Math.cos(phi)*Math.cos(beta)*Math.cos(omega)
-                                        +Math.cos(delta)*Math.sin(phi)*Math.sin(beta)*Math.cos(omega)*Math.cos(gamma)
-                                        +Math.cos(delta)*Math.sin(beta)*Math.sin(omega)*Math.sin(gamma));
+            double theta = deg(Math.acos(Math.sin(rad(delta))*Math.sin(rad(phi))*Math.cos(rad(beta))
+                                        -Math.sin(rad(delta))*Math.cos(rad(phi))*Math.sin(rad(beta))*Math.cos(rad(gamma))
+                                        +Math.cos(rad(delta))*Math.cos(rad(phi))*Math.cos(rad(beta))*Math.cos(rad(omega))
+                                        +Math.cos(rad(delta))*Math.sin(rad(phi))*Math.sin(rad(beta))*Math.cos(rad(omega))*Math.cos(rad(gamma))
+                                        +Math.cos(rad(delta))*Math.sin(rad(beta))*Math.sin(rad(omega))*Math.sin(rad(gamma))));
             thetaETValue = true;
             thetaOutputTV.setText("theta:       " + theta);
             thetaET.setText(String.valueOf(theta));
         }else{
             thetaOutputTV.setText("theta:       " + " - ");
         }
+    }
+
+    double rad(double deg){
+
+        return deg*0.0174533;
+    }
+    double deg(double rad){
+        return rad/0.0174533;
     }
 
 }
